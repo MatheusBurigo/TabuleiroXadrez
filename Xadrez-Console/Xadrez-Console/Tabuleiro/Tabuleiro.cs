@@ -1,4 +1,6 @@
-﻿namespace Xadrez_Console.Tabuleiro
+﻿using Xadrez_Console.Tabuleiro.Exceptions;
+
+namespace Xadrez_Console.Tabuleiro
 {
     public class Table
     {
@@ -20,12 +22,48 @@
             return pecas[linha, coluna];
         }
 
+        public Peca peca(Position pos)
+        {
+            return pecas[pos.Linha, pos.Coluna];
+        }
+
         public void ColocarPeca(Peca p, Position pos)
         {
+            if (ExistePeca(pos))
+            {
+                throw new TabuleiroExceptions("Já existe uma peça nessa posição!");
+            }
             //Coloco minha peça na matriz de Peças
             pecas[pos.Linha, pos.Coluna] = p;
             // Informa a nova posição da peça
             p.Position = pos;
+        }
+
+        public bool ExistePeca(Position pos)
+        {
+            // Valido se a posição é válida
+            validarPosicao(pos);
+            // valido se está vazio o local da peça
+            return peca(pos) != null;
+        }
+
+        public bool PosicaoValida(Position pos)
+        {
+            // Validon a posição que está sendo adicionada a Peça
+            if(pos.Linha < 0|| pos.Linha >= Linhas || pos.Coluna <  0|| pos.Coluna>=Colunas)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public void validarPosicao(Position pos)
+        {
+            // Lanço exceção se a posição for inválida
+            if (!PosicaoValida(pos))
+            {
+                throw new TabuleiroExceptions("Posição inválida!");
+            }
         }
     }
 }
