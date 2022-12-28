@@ -1,24 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Xadrez_Console.Tabuleiro
+﻿namespace Xadrez_Console.Tabuleiro
 {
-    public class Tabuleiro
+    public class Table
     {
         public int Linhas { get; set; }
         public int Colunas { get; set; }
         //Matriz de Peças do tabuleiro
-        private Peca[,] Peca;
+        private Peca[,] pecas;
 
-        public Tabuleiro(int linhas, int colunas)
+        public Table(int linhas, int colunas)
         {
             Linhas = linhas;
             Colunas = colunas;
             // Criando Matriz de dados dentro do Tabuleiro
-            Peca = new Peca[Linhas, Colunas];
+            pecas = new Peca[Linhas, Colunas];
+        }
+
+        public Peca peca(int linha, int coluna)
+        {
+            return pecas[linha, coluna];
         }
     }
 }
