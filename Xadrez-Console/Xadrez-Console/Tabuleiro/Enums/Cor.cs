@@ -14,6 +14,8 @@ namespace Xadrez_Console.Tabuleiro.Enums
         Verde,
         Azul,
         Anil,
-        Violeta
+        Violeta,
+        Preto,
+        Branco
     }
 }
