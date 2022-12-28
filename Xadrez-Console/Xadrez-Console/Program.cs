@@ -6,12 +6,9 @@ namespace Xadrez_Console
     {
         static void Main(string[] args)
         {
-            Position position;
+            var tabuleiro = new Table(8, 8);
 
-            position = new Position(3, 4);
-
-            Console.WriteLine("Posição " + position);
-
+            Tela.ImprimirTela(tabuleiro);
             Console.ReadLine();
         }
     }
