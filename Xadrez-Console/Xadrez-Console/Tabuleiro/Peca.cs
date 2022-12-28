@@ -10,9 +10,9 @@ namespace Xadrez_Console.Tabuleiro
         public int MovimentosRealizados { get; protected set; }
         public Table Tabuleiro{ get; protected set; }
 
-        public Peca(Position position, Cor cor, Table tabuleiro)
+        public Peca(Cor cor, Table tabuleiro)
         {
-            Position = position;
+            Position = null;
             Cor = cor;
             Tabuleiro = tabuleiro;
             MovimentosRealizados= 0;
