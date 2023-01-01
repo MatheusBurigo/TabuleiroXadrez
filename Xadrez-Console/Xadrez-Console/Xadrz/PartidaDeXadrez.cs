@@ -9,6 +9,7 @@ namespace Xadrez_Console.Xadrz
         public Table tabuleiro { get; private set; }
         private int turno;
         private Cor jogador;
+        public bool Terminar { get; set; }
 
 
         public PartidaDeXadrez()
