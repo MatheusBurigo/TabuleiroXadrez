@@ -16,7 +16,7 @@ namespace Xadrez_Console.Xadrz
 
         public Position toPosicao()
         {
-            return new Position(8 - Linha, Coluna = 'a');
+            return new Position(8 - Linha, Coluna - 'a');
         }
 
         public override string ToString()
