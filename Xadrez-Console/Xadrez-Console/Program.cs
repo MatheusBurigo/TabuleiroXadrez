@@ -11,19 +11,15 @@ namespace Xadrez_Console
         {
             try
             {
-                var tabuleiro = new Table(8, 8);
-                tabuleiro.ColocarPeca(new Torre(Cor.Preto, tabuleiro), new Position(0, 0));
-                tabuleiro.ColocarPeca(new Torre(Cor.Preto, tabuleiro), new Position(1, 3));
-                tabuleiro.ColocarPeca(new Rei(Cor.Preto, tabuleiro), new Position(2, 4));
-
-                Tela.ImprimirTela(tabuleiro);
-                Console.ReadLine();
+                PartidaDeXadrez partida = new PartidaDeXadrez();
+                Tela.ImprimirTela(partida.tabuleiro);
             }
             catch (TabuleiroExceptions ex) 
             {
                 Console.WriteLine(ex.Message);
             }
-            
+
+            Console.ReadLine();
         }
     }
 }

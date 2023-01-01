@@ -38,6 +38,17 @@ namespace Xadrez_Console.Tabuleiro
             // Informa a nova posição da peça
             p.Position = pos;
         }
+        public Peca RetirarPeca(Position pos)
+        {
+            if (peca(pos) == null)
+            {
+                return null;
+            }
+            Peca aux = peca(pos);
+            aux.Position = null;
+            pecas[pos.Linha, pos.Coluna] = null;
+            return aux;
+        }
 
         public bool ExistePeca(Position pos)
         {
