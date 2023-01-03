@@ -3,7 +3,7 @@ using Xadrez_Console.Tabuleiro.Enums;
 
 namespace Xadrez_Console.Tabuleiro
 {
-    public class Peca
+    abstract public class Peca
     {
         public Position Position { get; set; }
         public Cor Cor{ get; protected set; }
@@ -22,5 +22,8 @@ namespace Xadrez_Console.Tabuleiro
         {
             MovimentosRealizados++;
         }
+
+        public abstract bool[,] MovimentosPossiveis();
+
     }
 }
