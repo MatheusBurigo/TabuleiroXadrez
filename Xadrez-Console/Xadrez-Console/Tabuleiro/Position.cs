@@ -14,7 +14,7 @@ namespace Xadrez_Console.Tabuleiro
 
         public void DefinirValores(int linha, int coluna)
         {
-            Linha = linha;
+           Linha = linha;
             Coluna = coluna;
         }
 
