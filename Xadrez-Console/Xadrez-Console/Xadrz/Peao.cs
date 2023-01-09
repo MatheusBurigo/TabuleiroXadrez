@@ -40,7 +40,7 @@ namespace Xadrez_Console.Xadrz
                 }
                 pos.DefinirValores(Position.Linha - 2, Position.Coluna);
                 Position p2 = new Position(Position.Linha - 1, Position.Coluna);
-                if (Tabuleiro.PosicaoValida(p2) && livre(p2) && Tabuleiro.PosicaoValida(pos) && livre(pos) && qteMovimentos == 0)
+                if (Tabuleiro.PosicaoValida(p2) && livre(p2) && Tabuleiro.PosicaoValida(pos) && livre(pos) && MovimentosRealizados == 0)
                 {
                     mat[pos.Linha, pos.Coluna] = true;
                 }
@@ -64,7 +64,7 @@ namespace Xadrez_Console.Xadrz
                 }
                 pos.DefinirValores(Position.Linha + 2, Position.Coluna);
                 Position p2 = new Position(Position.Linha + 1, Position.Coluna);
-                if (Tabuleiro.PosicaoValida(p2) && livre(p2) && Tabuleiro.PosicaoValida(pos) && livre(pos) && qteMovimentos == 0)
+                if (Tabuleiro.PosicaoValida(p2) && livre(p2) && Tabuleiro.PosicaoValida(pos) && livre(pos) && MovimentosRealizados == 0)
                 {
                     mat[pos.Linha, pos.Coluna] = true;
                 }
