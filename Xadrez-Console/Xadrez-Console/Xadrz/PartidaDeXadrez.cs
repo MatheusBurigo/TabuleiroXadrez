@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Xadrez_Console.Tabuleiro;
@@ -70,6 +71,37 @@ namespace Xadrez_Console.Xadrz
             return false;
         }
 
+        public bool XequeMate(Cor cor)
+        {
+            if (EstaEmXeque(cor))
+            {
+                return false;
+            }
+            foreach (Peca x in PecasEmJogo(cor))
+            {
+                bool[,] mat = x.MovimentosPossiveis();
+                for (int i = 0; i < tabuleiro.Linhas; i++)
+                {
+                    for (int j = 0; j < tabuleiro.Colunas; j++)
+                    {
+                        if (mat[i,j])
+                        {
+                            Position origem = x.Position;
+                            Position destino = new Position(i, j);
+                            Peca pecaCapturada = ExecutaMovimento(x.Position, new Position(i, j));
+                            bool testeXeque = EstaEmXeque(cor);
+                            DesfazMovimento(origem, destino, pecaCapturada);
+                            if (!testeXeque)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
         public void ColocarNovaPeca(char coluna, int linha, Peca peca)
         {
             tabuleiro.ColocarPeca(peca, new PositionXadrez(coluna, linha).toPosicao());
@@ -136,6 +168,10 @@ namespace Xadrez_Console.Xadrz
             else
             {
                 Xeque = false;
+            }
+            if (XequeMate(Adversario(jogador)))
+            {
+                Terminar = true;
             }
 
             turno++;
