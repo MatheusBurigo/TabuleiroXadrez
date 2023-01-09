@@ -142,7 +142,7 @@ namespace Xadrez_Console.Xadrz
             ColocarNovaPeca('b', 1, new Cavalo(tabuleiro, Cor.Branco));
             ColocarNovaPeca('c', 1, new Bispo(tabuleiro, Cor.Branco));
             ColocarNovaPeca('d', 1, new Dama(tabuleiro, Cor.Branco));
-            ColocarNovaPeca('e', 1, new Rei(Cor.Branco, tabuleiro));
+            ColocarNovaPeca('e', 1, new Rei(Cor.Branco, tabuleiro, this));
             ColocarNovaPeca('f', 1, new Bispo(tabuleiro, Cor.Branco));
             ColocarNovaPeca('g', 1, new Cavalo(tabuleiro, Cor.Branco));
             ColocarNovaPeca('h', 1, new Torre(Cor.Branco, tabuleiro));
@@ -159,7 +159,7 @@ namespace Xadrez_Console.Xadrz
             ColocarNovaPeca('b', 8, new Cavalo(tabuleiro, Cor.Preto));
             ColocarNovaPeca('c', 8, new Bispo(tabuleiro, Cor.Preto));
             ColocarNovaPeca('d', 8, new Dama(tabuleiro, Cor.Preto));
-            ColocarNovaPeca('e', 8, new Rei(Cor.Preto, tabuleiro));
+            ColocarNovaPeca('e', 8, new Rei(Cor.Preto, tabuleiro, this));
             ColocarNovaPeca('f', 8, new Bispo(tabuleiro, Cor.Preto));
             ColocarNovaPeca('g', 8, new Cavalo(tabuleiro, Cor.Preto));
             ColocarNovaPeca('h', 8, new Torre(Cor.Preto, tabuleiro));
@@ -232,6 +232,26 @@ namespace Xadrez_Console.Xadrz
             {
                 Capturadas.Add(pecaCapturada);
             }
+
+            if (p is Rei && destino.Coluna == origem.Coluna + 2)
+            {
+                Position origemT = new Position(origem.Linha, origem.Coluna + 3);
+                Position destinoT = new Position(origem.Linha, origem.Coluna + 1);
+                Peca T = tabuleiro.RetirarPeca(origemT);
+                T.incrementarQtdMovimentos();
+                tabuleiro.ColocarPeca(T, destinoT);
+            }
+
+            // #jogadaespecial roque grande
+            if (p is Rei && destino.Coluna == origem.Coluna - 2)
+            {
+                Position origemT = new Position(origem.Linha, origem.Coluna - 4);
+                Position destinoT = new Position(origem.Linha, origem.Coluna - 1);
+                Peca T = tabuleiro.RetirarPeca(origemT);
+                T.incrementarQtdMovimentos();
+                tabuleiro.ColocarPeca(T, destinoT);
+            }
+
             return pecaCapturada;
         }
 
